@@ -1,251 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>West Lacost - Affiliate Showcase</title>
-<style>
-  /* Reset & basics */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif;
-  }
-  body {
-    background: #fff;
-    color: #666; /* cinza suave */
-    font-size: 14px;
-    text-transform: lowercase;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  header {
-    max-width: 1200px;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  header h1 {
-    font-size: 2.5rem;
-    color: #000;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-  }
-  header p {
-    color: #444;
-    font-style: italic;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  #container {
-    max-width: 1200px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(230px,1fr));
-    gap: 20px;
-  }
-  .card {
-    background: #fff;
-    border: 2px solid transparent;
-    border-radius: 12px;
-    padding: 15px;
-    transition: border-color 0.4s ease;
-    box-shadow: 0 0 8px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .card:hover {
-    border-color: #00f0ff; /* neon azul suave */
-    box-shadow: 0 0 15px #00f0ff;
-  }
-  .card.red-hover:hover {
-    border-color: #ff0044; /* neon vermelho suave */
-    box-shadow: 0 0 15px #ff0044;
-  }
-  .card img {
-    width: 100%;
-    border-radius: 8px;
-    object-fit: contain;
-    max-height: 160px;
-    margin-bottom: 10px;
-  }
-  .title {
-    font-weight: 700;
-    color: #111;
-    margin-bottom: 6px;
-    font-size: 1rem;
-    height: 40px;
-    overflow: hidden;
-  }
-  .description {
-    flex-grow: 1;
-    font-size: 0.85rem;
-    color: #555;
-    margin-bottom: 15px;
-    height: 60px;
-    overflow: hidden;
-  }
-  .btn-go {
-    background: #000;
-    color: #0ff;
-    text-align: center;
-    padding: 10px 0;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 1.2px;
-    user-select: none;
-    transition: background-color 0.3s ease;
-  }
-  .btn-go:hover {
-    background-color: #0ff;
-    color: #000;
-  }
-  footer {
-    margin-top: 40px;
-    font-size: 12px;
-    color: #999;
-    user-select: none;
-  }
-  /* Cookie Consent */
-  #cookie-consent {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(0,0,0,0.8);
-    color: #fff;
-    font-size: 13px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 9999;
-  }
-  #cookie-consent button {
-    background: #0ff;
-    border: none;
-    color: #000;
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  #cookie-consent button:hover {
-    background-color: #00b7cc;
-  }
-  @media (max-width: 480px) {
-    body {
-      font-size: 12px;
-      padding: 10px;
-    }
-    header h1 {
-      font-size: 1.8rem;
-    }
-    #container {
-      grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
-      gap: 12px;
-    }
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>West Lacost</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Links afiliados organizados e automáticos por West Lacost. Rápido, responsivo, elegante e fácil de editar no GitHub.">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="affiliate.js"></script>
 </head>
 <body>
-<header>
-  <h1>West Lacost</h1>
-  <p>curating the freshest affiliate deals for you — click, discover, earn.</p>
-</header>
+  <header>
+    <div class="top-bar">
+      <span class="site-title">west lacost</span>
+      <span class="site-url">westlacost</span>
+    </div>
+    <div class="bio">
+      <p>
+        Conectando você às melhores ofertas e oportunidades do mercado digital. Profissionalismo, curadoria e tecnologia para facilitar sua compra com confiança e estilo.
+      </p>
+    </div>
+  </header>
 
-<div id="container" role="list">
-  <!-- Cards serão inseridos aqui dinamicamente -->
-</div>
-
-<footer>westlacost.site | © 2025</footer>
-
-<!-- Cookie consent -->
-<div id="cookie-consent" style="display:none;" role="alert" aria-live="polite">
-  this site uses cookies to improve your experience. 
-  <button id="accept-cookies" aria-label="Accept cookies">got it</button>
-</div>
-
-<script>
-// --- Gerenciamento do cookie consent ---
-const cookieConsent = document.getElementById('cookie-consent');
-const acceptBtn = document.getElementById('accept-cookies');
-
-function hasConsent() {
-  return localStorage.getItem('cookie-consent') === 'true';
-}
-
-function showConsent() {
-  if (!hasConsent()) {
-    cookieConsent.style.display = 'flex';
-  }
-}
-
-acceptBtn.addEventListener('click', () => {
-  localStorage.setItem('cookie-consent', 'true');
-  cookieConsent.style.display = 'none';
-});
-
-showConsent();
-
-
-// --- Função para buscar metadados do link usando Microlink API ---
-async function fetchMeta(url) {
-  const apiUrl = `https://api.microlink.io/?url=${encodeURIComponent(url)}`;
-  try {
-    const res = await fetch(apiUrl);
-    const json = await res.json();
-    if (json.status === 'success') {
-      return json.data;
-    }
-  } catch {
-    return null;
-  }
-  return null;
-}
-
-// --- Lista de links de afiliados aqui ---
-// Cole seus links afiliados aqui, só você edita este array
-const affiliateLinks = [
-  "https://www.amazon.com/dp/B08N5WRWNW",
-  "https://www.ebay.com/itm/1234567890",
-  "https://www.awin1.com/cread.php?awinmid=1234&awinaffid=5678&clickref=&p=",
-  "https://www.hotmart.com/product/sucesso-digital/123456789",
-];
-
-// --- Cria os cards da vitrine ---
-async function buildCards() {
-  const container = document.getElementById('container');
-
-  for (let i = 0; i < affiliateLinks.length; i++) {
-    const url = affiliateLinks[i];
-    const meta = await fetchMeta(url);
-    if (!meta) continue;
-
-    // alterna borda neon azul/vermelha
-    const borderClass = i % 2 === 0 ? '' : 'red-hover';
-
-    // Cria o card
-    const card = document.createElement('div');
-    card.className = `card ${borderClass}`;
-    card.setAttribute('role', 'listitem');
-
-    card.innerHTML = `
-      <img src="${meta.image?.url || 'https://via.placeholder.com/300x160?text=no+image'}" alt="${meta.title || 'product'}" />
-      <div class="title">${meta.title || 'no title'}</div>
-      <div class="description">${meta.description || 'no description'}</div>
-      <a href="${url}" target="_blank" rel="nofollow noopener" class="btn-go" aria-label="Go to product link">go</a>
-    `;
-
-    container.appendChild(card);
-  }
-}
-
-// chama na carga da página
-buildCards();
-</script>
+  <main>
+    <form id="affiliate-form">
+      <input type="url" id="affiliate-link" placeholder="cole seu link de afiliado aqui" required autocomplete="off">
+      <button type="submit">adicionar</button>
+    </form>
+    <div id="affiliate-list-container">
+      <div id="affiliate-list"></div>
+      <button id="add-more-btn" style="display:none;">+ adicionar mais</button>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="cookie-banner" id="cookie-banner">
+      <span>usamos cookies para melhorar sua experiência. <button id="accept-cookies">ok</button></span>
+    </div>
+  </footer>
 </body>
 </html>
-
